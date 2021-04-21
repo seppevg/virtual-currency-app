@@ -1,7 +1,7 @@
 const getLoggedIn = (req, res) => {
-    if (req.user === 'admin') {
+    if (req.query.user === 'admin') {
         res.json({
-            "status": "succes",
+            "status": "success",
             "data": { "message": 'User is logged in' }
         });
     }
