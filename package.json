@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/seppevg/virtual-currency-app.git"
   },
-  "author": "Robbe huybrechts & Seppe Vangeel",
+  "author": "Robbe Huybrechts & Seppe Vangeel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/seppevg/virtual-currency-app/issues"
   },
-  "homepage": "https://github.com/seppevg/virtual-currency-app#readme"
+  "homepage": "https://github.com/seppevg/virtual-currency-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
