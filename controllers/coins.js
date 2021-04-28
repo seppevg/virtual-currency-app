@@ -27,28 +27,19 @@ const getLoggedIn = (req, res) => {
 
 // GET transfers by by user id
 const getTransfersFromUser = (req, res, next) => {
-    let data = {}
-  
-    if(req.query.id == undefined) {
-        data = {
-            success: false,
-            message: 'A user id was not provided.',
-        };
-    } else {
-        data = {
-            success: true,
-            message: `Getting all transfers from user with id: ${req.query.id}`,
-            transfers: [
-                {
-                    transferId: 1,
-                    sender: 1,
-                    receiver: 5,
-                    amount: 10.00,
-                }
-            ],
-        };
+    if(req.query.user != undefined) {
+        // get all transfers as sender
+        Transfer.find({$or:[{"sender" : req.query.user},{"receiver" : req.query.user}]}, (err, docs) => {
+            if(!err) {
+                res.json({
+                    "status" : "success",
+                    "data" : {
+                        "transfers" : docs,
+                    }
+                });
+            }
+        });
     }
-    res.send(data);
 };
 
 // GET transfers by by user id
