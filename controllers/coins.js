@@ -61,21 +61,29 @@ const getTransferById = (req, res) => {
 
 const createTransfer = (req, res) => {
     let transfer = new Transfer();
-    transfer.sender = "Robbe";
-    transfer.receiver = "Seppe";
-    transfer.amount = 100.00;
-    transfer.reason = "Development help";
+    transfer.sender = req.body.sender;
+    transfer.receiver = req.body.receiver;
+    transfer.amount = req.body.amount;
+    transfer.reason = req.body.reason;
     transfer.date = Date.now();
-    transfer.save( (err, doc) => {
-        if(!err) {
-            res.json({
-                "status" : "success",
-                "data" : {
-                    "todo" : doc,
-                }
-            });
-        }
-    });
+
+    if(req.body && req.body.sender && req.body.receiver && req.body.amount && req.body.amount) {
+        transfer.save( (err, doc) => {
+            if(!err) {
+                res.json({
+                    "status" : "success",
+                    "data" : {
+                        "todo" : doc,
+                    }
+                });
+            }
+        });
+    } else {
+        res.json({
+            "status" : "error",
+            "message" : "Please provide valid body elements.",
+        });
+    }
 }
 
 module.exports.getLoggedIn = getLoggedIn;
