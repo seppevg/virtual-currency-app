@@ -43,28 +43,20 @@ const getTransfersFromUser = (req, res, next) => {
 };
 
 // GET transfers by by user id
-const getTransferById = (req, res, next) => {
-    let data = {};
-    
-    if(req.params.id < 0) {
-        data = {
-            success: false,
-            message: 'Please provide a valid id.',
-        }
-    } else {
-        data = {
-            success: true,
-            message: `Getting message with id ${req.params.id}`,
-            transfer: {
-                transferId: 1,
-                sender: 1,
-                receiver: 5,
-                amount: 10.00,
+const getTransferById = (req, res) => {
+    if(req.params.id != undefined) {
+        // get all transfers as sender
+        Transfer.findOne({"_id" : req.params.id}, (err, doc) => {
+            if(!err) {
+                res.json({
+                    "status" : "success",
+                    "data" : {
+                        "transfer" : doc,
+                    }
+                });
             }
-        }
+        });
     }
-    
-    res.send(data);
 };
 
 const createTransfer = (req, res) => {
