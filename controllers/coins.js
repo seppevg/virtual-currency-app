@@ -39,6 +39,11 @@ const getTransfersFromUser = (req, res, next) => {
                 });
             }
         });
+    }  else {
+        res.json({
+            "status" : "error",
+            "message" : "No user has been provided.",
+        });
     }
 };
 
@@ -55,6 +60,11 @@ const getTransferById = (req, res) => {
                     }
                 });
             }
+        });
+    } else {
+        res.json({
+            "status" : "error",
+            "message" : "No id has been provided.",
         });
     }
 };
@@ -73,7 +83,7 @@ const createTransfer = (req, res) => {
                 res.json({
                     "status" : "success",
                     "data" : {
-                        "todo" : doc,
+                        "transfer" : doc,
                     }
                 });
             }
