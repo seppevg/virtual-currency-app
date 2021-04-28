@@ -7,6 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/moola', {useNewUrlParser: true, useUnifiedTopology: true});
+
 var app = express();
 
 // view engine setup
