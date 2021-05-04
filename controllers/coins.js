@@ -1,14 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const transferSchema = new Schema({
-    sender: String,
-    receiver: String,
-    amount: Number,
-    date: Date,
-    reason: String,
-});
-const Transfer = mongoose.model('Transfer', transferSchema);
+const Transfer = require('../models/Transfer');
 
 const getLoggedIn = (req, res) => {
     if (req.query.user === 'admin') {
@@ -27,44 +17,44 @@ const getLoggedIn = (req, res) => {
 
 // GET transfers by by user id
 const getTransfersFromUser = (req, res, next) => {
-    if(req.query.user != undefined) {
+    if (req.query.user != undefined) {
         // get all transfers as sender
-        Transfer.find({$or:[{"sender" : req.query.user},{"receiver" : req.query.user}]}, (err, docs) => {
-            if(!err) {
+        Transfer.find({ $or: [{ "sender": req.query.user }, { "receiver": req.query.user }] }, (err, docs) => {
+            if (!err) {
                 res.json({
-                    "status" : "success",
-                    "data" : {
-                        "transfers" : docs,
-                    }
-                });
-            }
-        });
-    }  else {
-        res.json({
-            "status" : "error",
-            "message" : "No user has been provided.",
-        });
-    }
-};
-
-// GET transfers by by user id
-const getTransferById = (req, res) => {
-    if(req.params.id != undefined) {
-        // get all transfers as sender
-        Transfer.findOne({"_id" : req.params.id}, (err, doc) => {
-            if(!err) {
-                res.json({
-                    "status" : "success",
-                    "data" : {
-                        "transfer" : doc,
+                    "status": "success",
+                    "data": {
+                        "transfers": docs,
                     }
                 });
             }
         });
     } else {
         res.json({
-            "status" : "error",
-            "message" : "No id has been provided.",
+            "status": "error",
+            "message": "No user has been provided.",
+        });
+    }
+};
+
+// GET transfers by by user id
+const getTransferById = (req, res) => {
+    if (req.params.id != undefined) {
+        // get all transfers as sender
+        Transfer.findOne({ "_id": req.params.id }, (err, doc) => {
+            if (!err) {
+                res.json({
+                    "status": "success",
+                    "data": {
+                        "transfer": doc,
+                    }
+                });
+            }
+        });
+    } else {
+        res.json({
+            "status": "error",
+            "message": "No id has been provided.",
         });
     }
 };
@@ -77,21 +67,21 @@ const createTransfer = (req, res) => {
     transfer.reason = req.body.reason;
     transfer.date = Date.now();
 
-    if(req.body && req.body.sender && req.body.receiver && req.body.amount && req.body.amount) {
-        transfer.save( (err, doc) => {
-            if(!err) {
+    if (req.body && req.body.sender && req.body.receiver && req.body.amount && req.body.amount) {
+        transfer.save((err, doc) => {
+            if (!err) {
                 res.json({
-                    "status" : "success",
-                    "data" : {
-                        "transfer" : doc,
+                    "status": "success",
+                    "data": {
+                        "transfer": doc,
                     }
                 });
             }
         });
     } else {
         res.json({
-            "status" : "error",
-            "message" : "Please provide valid body elements.",
+            "status": "error",
+            "message": "Please provide valid body elements.",
         });
     }
 }
