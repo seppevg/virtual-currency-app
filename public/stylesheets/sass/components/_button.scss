@@ -9,3 +9,15 @@
     font-family: Mukta;
     font-size: 1em;
 }
+
+.button.button--red {
+    background-color: colors.$tomatored;
+}
+
+.button.button--blue {
+    background-color: colors.$coolblue;
+}
+
+.button.button--orange {
+    background-color: colors.$fruitorange;
+}

@@ -4,10 +4,10 @@ block content
   .container.container--login 
     img.logo(src="/images/logo.png", alt="Logo")
     .form.form--login 
-      p.label Login 
-      p.sub-label Enter your information
+      p.label Register 
+      p.sub-label Enter your information to make an account
+      input.field#name(type="text" placeholder="Name")
       input.field#email(type="text" placeholder="E-mail address")
       input.field#password(type="password" placeholder="Password")
-      button.button.button--red Log in
-    p.disclaimer No account yet? #[a(href="/signup") Sign up] for an account
-  script(src="javascript/login.js") 
+      button.button.button--blue Register
+    p.disclaimer Already have an account? #[a(href="/login") Log in.]
