@@ -6,6 +6,6 @@ fetch('./api/')
           // Logged in
       } else {
           // Niet logged in -> Redirect naar /login
-          window.location.href = './login';
+          //window.location.href = './login';
       }
 });

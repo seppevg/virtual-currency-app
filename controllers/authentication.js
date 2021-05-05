@@ -1,16 +1,18 @@
 const User = require('../models/User');
 
 const signup = async (req, res, next) => {
-    let username = req.body.username;
+    let name = req.body.name;
+    let email = req.body.email;
     let password = req.body.password;
 
-    const user = new User({ username: username });
+    const user = new User({ username: email, name: name });
     await user.setPassword(password);
     await user.save().then(result => {
         res.json({
-            "status": "succes"
+            "status": "success"
         });
     }).catch(error => {
+        console.log(error);
         res.json({
             "status": "error"
         });
@@ -18,9 +20,17 @@ const signup = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-    const user = await User.authenticate()(req.body.username, req.body.password).then(result => {
+    const user = await User.authenticate()(req.body.email, req.body.password).then(result => {
+        
+        if(!result.user) {
+            res.json({
+                "status": "failed",
+                "message": "Login failed",
+            })
+        }
+        
         res.json({
-            "status": "succes",
+            "status": "success",
             "data": { "user": result }
         });
     }).catch(error => {
