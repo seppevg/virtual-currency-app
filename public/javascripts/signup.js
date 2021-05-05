@@ -1,19 +1,22 @@
+const fieldName = document.querySelector('#name');
 const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
-const btnLogin = document.querySelector('.button--login');
+const btnSignup = document.querySelector('.button--signup');
 
-btnLogin.addEventListener('click', validateLogin);
+btnSignup.addEventListener('click', signUp);
 
-function validateLogin() {
+function signUp() {
+    let name = fieldName.value;
     let email = fieldEmail.value;
     let password = fieldPassword.value;
 
-    fetch('./api/login', {
+    fetch('./api/signup', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            "name": name,
             "email": email,
             "password": password,
         })
@@ -24,8 +27,7 @@ function validateLogin() {
             // Logged in
             window.location.href = './';
         } else {
-            // Login failed
-            // todo: show pop-up
+            // Sign up failed
             console.log(json.message);
         }
     });
