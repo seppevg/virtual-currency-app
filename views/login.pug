@@ -7,7 +7,9 @@ block content
       p.label Login 
       p.sub-label Enter your information
       input.field#email(type="text" placeholder="E-mail address")
-      input.field#password(type="password" placeholder="Password")
+      .eye--icon 
+        img.eye(src="/images/eye.svg", alt="eye")
+        input.field#password(type="password" placeholder="Password")
       button.button.button--red.button--login Log in
     p.disclaimer No account yet? #[a(href="/signup") Sign up] for an account
   script(src="/javascripts/login.js") 

@@ -64,6 +64,25 @@
   margin-bottom: 42px;
 }
 
+.field:focus {
+  outline: none;
+  border-bottom: 1px solid #25CED1;
+}
+
+.eye--icon {
+  position: relative;
+}
+
+.eye--icon img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.eye {
+  text-align: center;
+}
+
 .label {
   font-weight: bolder;
   color: #424242;
