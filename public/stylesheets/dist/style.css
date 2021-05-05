@@ -1,0 +1,97 @@
+@font-face {
+  font-family: Mukta;
+  src: url("../../fonts/Mukta-Regular.ttf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Mukta;
+  src: url("../../fonts/Mukta-Bold.ttf");
+  font-weight: bold;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  padding: 40px;
+  margin: 0px 20px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.logo {
+  display: block;
+  max-width: 90%;
+  margin: 70px auto;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  border-radius: 100px;
+  background-color: #EA526F;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 0px;
+  font-family: Mukta;
+  font-size: 1em;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 16px;
+  border: none;
+  border-bottom: 1px solid #CCCCCC;
+  color: #424242;
+}
+
+.field#password {
+  margin-bottom: 42px;
+}
+
+.label {
+  font-weight: bolder;
+  color: #424242;
+  margin: 0;
+}
+
+.sub-label {
+  color: #CCCCCC;
+  margin: 0px;
+  margin-bottom: 16px;
+  font-size: 0.8em;
+  line-height: 0.8em;
+}
+
+.disclaimer {
+  text-align: center;
+  color: #CCCCCC;
+  font-size: 0.8em;
+  padding: 0px 20px;
+}
+
+.disclaimer a {
+  color: #25CED1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: calc(100%);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font: 18px Mukta, Helvetica, Arial, sans-serif;
+  background-image: url("../../images/background.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,27 @@
+@use 'colors';
+@use 'fonts';
+@import 'components/container';
+@import 'components/logo';
+@import 'components/form';
+@import 'components/button';
+@import 'components/input';
+@import 'components/label';
+@import 'components/disclaimer';
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: calc(100%);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    font: 18px Mukta, Helvetica, Arial, sans-serif;
+    background-image: url('../../images/background.png');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}

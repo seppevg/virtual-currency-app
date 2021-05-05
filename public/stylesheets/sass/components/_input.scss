@@ -1,0 +1,13 @@
+.field {
+    display: block;
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 16px;
+    border: none;
+    border-bottom: 1px solid colors.$grayish;
+    color: colors.$fakeblack;
+}
+
+.field#password {
+    margin-bottom: 42px;
+}

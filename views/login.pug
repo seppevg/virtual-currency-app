@@ -1,7 +1,12 @@
 extends layout
 
 block content
-  .login-container 
-    input.field#username(type="text")
-    input.field#password(type="password")
-    button.button.button--signup Log in
+  .container.container--login 
+    img.logo(src="/images/logo.png", alt="Logo")
+    .form.form--login 
+      p.label Login 
+      p.sub-label Enter your information
+      input.field#username(type="text")
+      input.field#password(type="password")
+      button.button.button--login Log in
+    p.disclaimer No account yet? #[a(href="/singup") Sign up] for an account
