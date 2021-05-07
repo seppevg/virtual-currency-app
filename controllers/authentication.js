@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 const signup = async (req, res, next) => {
     let name = req.body.name;
@@ -6,7 +7,7 @@ const signup = async (req, res, next) => {
     let password = req.body.password;
 
     // Empty validator
-    if(name == "" || email == "" || password == "") {
+    if (name == "" || email == "" || password == "") {
         return res.json({
             "status": "error",
             "message": "Please fill in all the required fields!",
@@ -14,7 +15,7 @@ const signup = async (req, res, next) => {
     }
 
     // @student.thomasmore.be validator
-    if(!email.includes("@student.thomasmore.be")) {
+    if (!email.includes("@student.thomasmore.be")) {
         return res.json({
             "status": "error",
             "message": "A Thomas More student e-mail address is required!",
@@ -24,8 +25,14 @@ const signup = async (req, res, next) => {
     const user = new User({ username: email, name: name });
     user.setPassword(password).then(() => {
         user.save().then(result => {
+            let token = jwt.sign({
+                uid: result._id,
+                email: result.username,
+                name: result.name
+            }, "MyVerySecretWord");
             res.json({
-                "status": "success"
+                "status": "success",
+                "data": { "token": token }
             });
         }).catch(error => {
             res.json({
@@ -46,7 +53,7 @@ const login = async (req, res, next) => {
     let password = req.body.password;
 
     // Empty validator
-    if(email == "" || password == "") {
+    if (email == "" || password == "") {
         return res.json({
             "status": "error",
             "message": "Please fill in all the required fields!",
@@ -54,14 +61,14 @@ const login = async (req, res, next) => {
     }
 
     const user = await User.authenticate()(req.body.email, req.body.password).then(result => {
-        
-        if(!result.user) {
+
+        if (!result.user) {
             res.json({
                 "status": "failed",
                 "message": "Login failed",
             })
         }
-        
+
         res.json({
             "status": "success",
             "data": { "user": result }
