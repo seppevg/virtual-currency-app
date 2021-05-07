@@ -15,7 +15,7 @@ const getLoggedIn = (req, res) => {
     }
 };
 
-// GET transfers by by user id
+// GET transfers from user
 const getTransfersFromUser = (req, res, next) => {
     if (req.query.user != undefined) {
         // get all transfers as sender
@@ -37,7 +37,7 @@ const getTransfersFromUser = (req, res, next) => {
     }
 };
 
-// GET transfers by by user id
+// GET transfers by user id
 const getTransferById = (req, res) => {
     if (req.params.id != undefined) {
         // get all transfers as sender

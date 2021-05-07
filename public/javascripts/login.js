@@ -8,7 +8,7 @@ function validateLogin() {
     let email = fieldEmail.value;
     let password = fieldPassword.value;
 
-    fetch('./api/login', {
+    fetch('./users/login', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -17,15 +17,17 @@ function validateLogin() {
             "email": email,
             "password": password,
         })
-    })
-    .then(response => response.json())
-    .then(json => {
-        if(json.status == 'success') {
-            // Logged in
+    }).then(response => {
+        return response.json();
+    }).then(json => {
+        if (json.status === 'success') {
+            // Login success
+            let token = json.data.token;
+            localStorage.setItem("token", token);
             window.location.href = './';
         } else {
             // Login failed
-            // todo: show pop-up
+            // show pop-up message
             console.log(json.message);
         }
     });

@@ -26,7 +26,7 @@ const signup = async (req, res, next) => {
     user.setPassword(password).then(() => {
         user.save().then(result => {
             let token = jwt.sign({
-                uid: result._id,
+                userid: result._id,
                 email: result.username,
                 name: result.name
             }, "MyVerySecretWord");
@@ -69,10 +69,17 @@ const login = async (req, res, next) => {
             })
         }
 
+        let token = jwt.sign({
+            userid: result.user._id,
+            email: result.user.username,
+            name: result.user.name
+        }, "MyVerySecretWord");
+
         res.json({
             "status": "success",
-            "data": { "user": result }
+            "data": { "token": token }
         });
+
     }).catch(error => {
         res.json({
             "status": "error",

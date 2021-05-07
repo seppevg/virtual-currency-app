@@ -10,7 +10,7 @@ function signUp() {
     let email = fieldEmail.value;
     let password = fieldPassword.value;
 
-    fetch('./api/signup', {
+    fetch('./users/signup', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -20,13 +20,16 @@ function signUp() {
             "email": email,
             "password": password,
         })
-    })
-    .then(response => response.json())
-    .then(json => {
-        if(json.status == 'success') {
-            // Logged in
+    }).then(response => {
+        return response.json();
+    }).then(json => {
+        if (json.status === 'success') {
+            // Sign up success
+            let token = json.data.token;
+            localStorage.setItem("token", token);
             window.location.href = './';
-        } else {
+        }
+        else {
             // Sign up failed
             console.log(json.message);
         }
