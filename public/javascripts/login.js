@@ -2,6 +2,8 @@ const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnLogin = document.querySelector('.button--login');
 const btnEye = document.querySelector('.eye');
+const popUp = document.querySelector('.popup');
+const btnPopUp = document.querySelector('.button--popup');
 
 btnLogin.addEventListener('click', validateLogin);
 function validateLogin() {
@@ -28,7 +30,7 @@ function validateLogin() {
         } else {
             // Login failed
             // show pop-up message
-            console.log(json.message);
+            showPopUp("Login error", json.message);
         }
     });
 }
@@ -44,3 +46,18 @@ function togglePasswordVisibility() {
         btnEye.src = "/images/eye.svg";
     }
 } 
+
+// Pop up handler
+function showPopUp(title, message) {
+    // make visible
+    popUp.classList.add('popup--visible');
+
+    //set contents
+    document.querySelector('.popup-title').innerHTML = title;
+    document.querySelector('.popup-text').innerHTML = message;
+}
+btnPopUp.addEventListener('click', closePopUp);
+function closePopUp() {
+    // make invisible
+    popUp.classList.remove('popup--visible');
+}

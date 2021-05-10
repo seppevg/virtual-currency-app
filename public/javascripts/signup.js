@@ -3,9 +3,10 @@ const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnSignup = document.querySelector('.button--signup');
 const btnEye = document.querySelector('.eye');
+const popUp = document.querySelector('.popup');
+const btnPopUp = document.querySelector('.button--popup');
 
 btnSignup.addEventListener('click', signUp);
-
 function signUp() {
     let name = fieldName.value;
     let email = fieldEmail.value;
@@ -32,7 +33,7 @@ function signUp() {
         }
         else {
             // Sign up failed
-            console.log(json.message);
+            showPopUp("Signup failed", json.message);
         }
     });
 }
@@ -47,4 +48,19 @@ function togglePasswordVisibility() {
         fieldPassword.type = "password";
         btnEye.src = "/images/eye.svg";
     }
-} 
+}
+
+// Pop up handler
+function showPopUp(title, message) {
+    // make visible
+    popUp.classList.add('popup--visible');
+
+    //set contents
+    document.querySelector('.popup-title').innerHTML = title;
+    document.querySelector('.popup-text').innerHTML = message;
+}
+btnPopUp.addEventListener('click', closePopUp);
+function closePopUp() {
+    // make invisible
+    popUp.classList.remove('popup--visible');
+}
