@@ -1,9 +1,9 @@
 const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnLogin = document.querySelector('.button--login');
+const btnEye = document.querySelector('.eye');
 
 btnLogin.addEventListener('click', validateLogin);
-
 function validateLogin() {
     let email = fieldEmail.value;
     let password = fieldPassword.value;
@@ -32,3 +32,15 @@ function validateLogin() {
         }
     });
 }
+
+// Password toggle
+btnEye.addEventListener('click', togglePasswordVisibility);
+function togglePasswordVisibility() {
+    if(fieldPassword.type == "password") {
+        fieldPassword.type = "text";
+        btnEye.src = "/images/eye_open.svg";
+    } else {
+        fieldPassword.type = "password";
+        btnEye.src = "/images/eye.svg";
+    }
+} 

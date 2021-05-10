@@ -2,6 +2,7 @@ const fieldName = document.querySelector('#name');
 const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnSignup = document.querySelector('.button--signup');
+const btnEye = document.querySelector('.eye');
 
 btnSignup.addEventListener('click', signUp);
 
@@ -35,3 +36,15 @@ function signUp() {
         }
     });
 }
+
+// Password toggle
+btnEye.addEventListener('click', togglePasswordVisibility);
+function togglePasswordVisibility() {
+    if(fieldPassword.type == "password") {
+        fieldPassword.type = "text";
+        btnEye.src = "/images/eye_open.svg";
+    } else {
+        fieldPassword.type = "password";
+        btnEye.src = "/images/eye.svg";
+    }
+} 
