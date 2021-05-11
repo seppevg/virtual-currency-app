@@ -1,7 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
+  .background
+    .container--margin
+      h1= 'Balance'
+      .container.container--balance
+        strong.balance-amount 213.32
+        p.balance-logo moola
+      button.button.button--blue.button--transaction Start transaction
+      .icon 
+        img.icon--eye(src="/images/questionmark.svg", alt="questionmark")
+        p.label Recent transactions
+      .transaction
+        img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
+        .transaction-info
+          p.transaction-name Arno Breugelmans
+          p.transaction-time 32 minutes ago
+        p.transaction-amount #[span.money -15.00] MLA
+      .transaction
+        img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
+        .transaction-info
+          p.transaction-name Gilles Decoster
+          p.transaction-time 2 days ago
+        p.transaction-amount #[span.money +9.32] MLA
+      .transaction
+        img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
+        .transaction-info
+          p.transaction-name Kenjiro Van Hoof
+          p.transaction-time 1 week ago
+        p.transaction-amount #[span.money -23.05] MLA
+    .nav
   script(src="/javascripts/index.js")

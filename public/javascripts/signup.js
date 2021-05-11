@@ -2,7 +2,7 @@ const fieldName = document.querySelector('#name');
 const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnSignup = document.querySelector('.button--signup');
-const btnEye = document.querySelector('.eye');
+const btnEye = document.querySelector('.icon--eye');
 const popUp = document.querySelector('.popup');
 const btnPopUp = document.querySelector('.button--popup');
 
@@ -41,7 +41,7 @@ function signUp() {
 // Password toggle
 btnEye.addEventListener('click', togglePasswordVisibility);
 function togglePasswordVisibility() {
-    if(fieldPassword.type == "password") {
+    if (fieldPassword.type == "password") {
         fieldPassword.type = "text";
         btnEye.src = "/images/eye_open.svg";
     } else {

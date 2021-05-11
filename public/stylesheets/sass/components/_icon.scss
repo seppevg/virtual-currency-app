@@ -1,0 +1,18 @@
+
+.icon {
+    position: relative;
+}
+
+.icon img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.icon--eye {
+    text-align: center;
+}
+
+.icon--transaction {
+    padding-right: 0.5em;
+}

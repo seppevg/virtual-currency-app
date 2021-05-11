@@ -1,7 +1,7 @@
 const fieldEmail = document.querySelector('#email');
 const fieldPassword = document.querySelector('#password');
 const btnLogin = document.querySelector('.button--login');
-const btnEye = document.querySelector('.eye');
+const btnEye = document.querySelector('.icon--eye');
 const popUp = document.querySelector('.popup');
 const btnPopUp = document.querySelector('.button--popup');
 
@@ -38,14 +38,14 @@ function validateLogin() {
 // Password toggle
 btnEye.addEventListener('click', togglePasswordVisibility);
 function togglePasswordVisibility() {
-    if(fieldPassword.type == "password") {
+    if (fieldPassword.type == "password") {
         fieldPassword.type = "text";
         btnEye.src = "/images/eye_open.svg";
     } else {
         fieldPassword.type = "password";
         btnEye.src = "/images/eye.svg";
     }
-} 
+}
 
 // Pop up handler
 function showPopUp(title, message) {
