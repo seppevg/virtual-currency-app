@@ -23,7 +23,7 @@
 }
 
 .container--margin {
-  margin: 0px 40px;
+  margin: 0px 40px 20px 40px;
 }
 
 .container--balance {
@@ -43,6 +43,14 @@
   margin-top: -2.5em;
   margin-bottom: 2em;
   padding-bottom: 1em;
+}
+
+.container--nav {
+  border-radius: 5em;
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em 0;
 }
 
 .logo {
@@ -179,6 +187,15 @@
   border-radius: 16px;
 }
 
+.link {
+  text-decoration: none;
+  padding-left: 0.5em;
+}
+
+.link--home {
+  color: #EA526F;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -200,7 +217,8 @@ body {
 h1 {
   font: 32px Mukta, Helvetica, Arial, sans-serif;
   font-weight: bold;
-  padding-top: 0px;
+  padding-top: 40px;
+  margin: 0;
   margin-bottom: 10px;
 }
 
@@ -212,7 +230,7 @@ h1 {
 }
 
 .transaction {
-  padding: 0.5em 0;
+  padding: 0em 0;
   display: flex;
   align-items: center;
 }
@@ -238,6 +256,23 @@ h1 {
 }
 .transaction .transaction-amount .money {
   font-weight: bold;
+}
+
+.transaction--first {
+  padding-top: 1em;
+}
+
+.separator {
+  display: flex;
+  margin: auto;
+  padding: 0.75em 0;
+}
+
+.nav-active {
+  background-color: rgba(234, 82, 111, 0.33);
+  display: flex;
+  padding: 0.25em 1em;
+  border-radius: 5em;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -11,23 +11,31 @@ block content
       .icon 
         img.icon--eye(src="/images/questionmark.svg", alt="questionmark")
         p.label Recent transactions
-      .transaction
+      .transaction.transaction--first
         img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
         .transaction-info
           p.transaction-name Arno Breugelmans
           p.transaction-time 32 minutes ago
         p.transaction-amount #[span.money -15.00] MLA
+      img.separator(src="/images/separatorline.svg", alt="separator line")
       .transaction
         img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
         .transaction-info
           p.transaction-name Gilles Decoster
           p.transaction-time 2 days ago
         p.transaction-amount #[span.money +9.32] MLA
+      img.separator(src="/images/separatorline.svg", alt="separator line")
       .transaction
         img.icon--transaction(src="/images/orange_transaction.svg", alt="transaction")
         .transaction-info
           p.transaction-name Kenjiro Van Hoof
           p.transaction-time 1 week ago
         p.transaction-amount #[span.money -23.05] MLA
-    .nav
+    .container.container--nav
+      .nav-active
+        img.icon--homepage(src="/images/home_icon.svg", alt="Home icon")
+        a.link.link--home(href='//google.com') Home
+      img.icon--transactionpage(src="/images/transaction_icon.svg", alt="Transaction icon")
+      img.icon--historypage(src="/images/history_icon.svg", alt="History icon")
+
   script(src="/javascripts/index.js")
