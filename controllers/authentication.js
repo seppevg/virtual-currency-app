@@ -22,17 +22,16 @@ const signup = async (req, res, next) => {
         });
     }
 
-    const user = new User({ username: email, name: name });
+    const user = new User({ username: email, name: name, balance: '100.00' });
     user.setPassword(password).then(() => {
         user.save().then(result => {
             let token = jwt.sign({
-                userid: result._id,
-                email: result.username,
-                name: result.name
+                uid: result._id,
+                username: result.username,
             }, "MyVerySecretWord");
             res.json({
                 "status": "success",
-                "data": { "token": token }
+                "data": { "token": token },
             });
         }).catch(error => {
             res.json({
@@ -70,9 +69,8 @@ const login = async (req, res, next) => {
         }
 
         let token = jwt.sign({
-            userid: result.user._id,
-            email: result.user.username,
-            name: result.user.name
+            uid: result.user._id,
+            username: result.user.username,
         }, "MyVerySecretWord");
 
         res.json({

@@ -1,19 +1,6 @@
 const Transfer = require('../models/Transfer');
-
-const getLoggedIn = (req, res) => {
-    if (req.query.user === 'admin') {
-        res.json({
-            "status": "success",
-            "data": { "message": 'User is logged in' }
-        });
-    }
-    else {
-        res.json({
-            "status": "failed",
-            "data": { "message": 'Authentication failed' }
-        });
-    }
-};
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 // GET transfers from user
 const getTransfersFromUser = (req, res, next) => {
@@ -86,7 +73,37 @@ const createTransfer = (req, res) => {
     }
 }
 
-module.exports.getLoggedIn = getLoggedIn;
+const getBalance = (req, res) => {
+    if (req.headers.authorization.startsWith("Bearer ")) {
+        token = req.headers.authorization.substring(7, req.headers.authorization.length);
+    } else {
+        //Error
+    }
+    const decoded = jwt.verify(token, "MyVerySecretWord");
+    var userId = decoded.uid;
+    console.log(userId);
+
+    User.findOne({ _id: userId }, function (err, user) {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            return done(null, user);
+        }
+        else {
+            return done(null, false);
+        }
+    });
+
+    res.json({
+        "status": "success",
+        "data": {
+            "balance": "100.00"
+        }
+    });
+}
+
 module.exports.getTransfersFromUser = getTransfersFromUser;
 module.exports.getTransferById = getTransferById;
 module.exports.createTransfer = createTransfer;
+module.exports.getBalance = getBalance;
