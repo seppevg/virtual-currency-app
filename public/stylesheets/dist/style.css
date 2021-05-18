@@ -50,7 +50,11 @@
   margin: 0px 20px;
   display: flex;
   justify-content: space-around;
-  padding: 1em 0;
+  align-items: center;
+  padding: 1em;
+}
+.container--nav svg path {
+  fill: #DEDEDE;
 }
 
 .logo {
@@ -96,6 +100,10 @@
   margin-bottom: 2em;
 }
 
+.button--sendTransaction {
+  margin: 2em 0 3em 0;
+}
+
 .field {
   display: block;
   width: 100%;
@@ -114,6 +122,10 @@
 .field:focus {
   outline: none;
   border-bottom: 1px solid #25CED1;
+}
+
+.field#transaction_amount {
+  width: 25%;
 }
 
 .label {
@@ -196,6 +208,36 @@
   color: #EA526F;
 }
 
+.nav-active {
+  display: flex;
+  padding: 0.25em 1em;
+  border-radius: 5em;
+}
+
+.nav-active--home {
+  background-color: rgba(234, 82, 111, 0.33);
+  display: flex;
+  align-items: center;
+}
+.nav-active--home a {
+  color: #EA526F;
+}
+.nav-active--home svg path {
+  fill: #EA526F;
+}
+
+.nav-active--transaction {
+  background-color: rgba(250, 136, 90, 0.33);
+  display: flex;
+  align-items: center;
+}
+.nav-active--transaction a {
+  color: #FA885A;
+}
+.nav-active--transaction svg path {
+  fill: #FA885A;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -268,11 +310,34 @@ h1 {
   padding: 0.75em 0;
 }
 
-.nav-active {
-  background-color: rgba(234, 82, 111, 0.33);
+.transaction_header {
+  margin-bottom: 1em;
+}
+
+.coins {
   display: flex;
-  padding: 0.25em 1em;
-  border-radius: 5em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form--transaction select, .form--transaction textarea {
+  display: block;
+  width: 100%;
+  padding: 2px 6px;
+  margin-bottom: 16px;
+  border: 1px solid #CCCCCC;
+  border-radius: 2em;
+  color: #424242;
+  font-family: Mukta;
+  background: white;
+}
+.form--transaction textarea {
+  border-radius: 0.5em;
+}
+
+#transaction_type:focus, #transaction_comment:focus {
+  outline: none;
+  border: 1px solid #25CED1;
 }
 
 /*# sourceMappingURL=style.css.map */

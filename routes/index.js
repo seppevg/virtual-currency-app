@@ -8,12 +8,17 @@ router.get('/', (req, res, next) => {
 
 /* GET login page. */
 router.get('/login', (req, res, next) => {
-  res.render('login', { title: 'Login pagina' });
+  res.render('login', { title: 'Moola | Login' });
 });
 
 /* GET signup page. */
 router.get('/signup', (req, res, next) => {
-  res.render('signup', { title: 'Signup pagina' });
+  res.render('signup', { title: 'Moola | Signup' });
+});
+
+/* GET transaction page. */
+router.get('/transaction', (req, res, next) => {
+  res.render('transaction', { title: 'Moola | Transaction' });
 });
 
 module.exports = router;

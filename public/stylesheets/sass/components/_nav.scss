@@ -1,0 +1,29 @@
+.nav-active {
+    display: flex;
+    padding: 0.25em 1em;
+    border-radius: 5em;
+}
+
+.nav-active--home {
+    background-color: colors.$fadedred;
+    display: flex;
+    align-items: center;
+    a {
+        color: colors.$tomatored;
+    }
+    svg path {
+        fill: colors.$tomatored;
+    }
+}
+
+.nav-active--transaction {
+    background-color: colors.$fadedorange;
+    display: flex;
+    align-items: center;
+    a {
+        color: colors.$fruitorange;
+    }
+    svg path {
+        fill: colors.$fruitorange;
+    }
+}
