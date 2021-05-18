@@ -1,4 +1,4 @@
-// Check authentication
+// Check authentication and get balance
 fetch('./api/balance', {
     "headers": {
         "Authorization": "Bearer " + localStorage.getItem('token')

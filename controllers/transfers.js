@@ -83,22 +83,14 @@ const getBalance = (req, res) => {
     var userId = decoded.uid;
     console.log(userId);
 
-    User.findOne({ _id: userId }, function (err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            return done(null, user);
-        }
-        else {
-            return done(null, false);
-        }
-    });
-
-    res.json({
-        "status": "success",
-        "data": {
-            "balance": "100.00"
+    User.findOne({ "_id": userId }, (err, doc) => {
+        if(!err) {
+             res.json({
+                "status": "success",
+                "data": {
+                    "balance": doc.balance,
+                }
+            });
         }
     });
 }
