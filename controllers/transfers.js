@@ -1,12 +1,39 @@
 const Transfer = require('../models/Transfer');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+var ObjectId = require('mongodb').ObjectId; 
+const users = require('./users');
+
+//JWT Converter
+const getIdFromJWT = (req) => {
+    if(req.headers.authorization.startsWith("Bearer ")) {
+        token = req.headers.authorization.substring(7, req.headers.authorization.length);
+    } else {
+        return false;
+    }
+    
+    const decoded = jwt.verify(token, "MyVerySecretWord");
+    return decoded.uid;
+}
 
 // GET transfers from user
 const getTransfersFromUser = (req, res, next) => {
-    if (req.query.user != undefined) {
+    // JWT naar User ID
+    let userId = getIdFromJWT(req);
+
+    if(!userId) {
+        return res.json({
+            "status": "error",
+            "message": "Please provide valid body elements.",
+        });
+    }
+
+    // Omzetten naar MongoDB ID om één of andere reden
+    userId = new ObjectId(userId);
+
+    if (userId != undefined) {
         // get all transfers as sender
-        Transfer.find({ $or: [{ "sender": req.query.user }, { "receiver": req.query.user }] }, (err, docs) => {
+        Transfer.find({ $or: [{ "sender._id": userId }, { "receiver._id": userId }] }, (err, docs) => {
             if (!err) {
                 res.json({
                     "status": "success",
@@ -47,49 +74,61 @@ const getTransferById = (req, res) => {
 };
 
 const createTransfer = (req, res) => {
-    let transfer = new Transfer();
-    transfer.sender = req.body.sender;
-    transfer.receiver = req.body.receiver;
-    transfer.amount = req.body.amount;
-    transfer.reason = req.body.reason;
-    transfer.date = Date.now();
+    users.getUserById(getIdFromJWT(req), (result) => {
+        let sender = result;
+        users.getUserByName(req.body.receiver, (result) => {
+            let receiver = result;
+                    
+            let transfer = new Transfer();
+            transfer.sender = { "_id": sender._id, "name": sender.name, };
+            transfer.receiver =  { "_id": receiver._id, "name": receiver.name, };
+            transfer.amount = req.body.amount;
+            transfer.reason = req.body.reason;
+            transfer.date = Date.now();
 
-    if (req.body && req.body.sender && req.body.receiver && req.body.amount && req.body.amount) {
-        transfer.save((err, doc) => {
-            if (!err) {
-                res.json({
-                    "status": "success",
-                    "data": {
-                        "transfer": doc,
+            if (req.body && req.body.receiver && req.body.amount) {
+                transfer.save((err, doc) => {
+                    if (!err) {
+                        res.json({
+                            "status": "success",
+                            "data": {
+                                "transfer": doc,
+                            }
+                        });
                     }
+                });
+            } else {
+                res.json({
+                    "status": "error",
+                    "message": "Please provide valid body elements.",
                 });
             }
         });
-    } else {
+    });
+}
+
+const getBalance = (req, res) => {
+    let userId = getIdFromJWT(req);
+
+    if(!userId) {
         res.json({
             "status": "error",
             "message": "Please provide valid body elements.",
         });
     }
-}
-
-const getBalance = (req, res) => {
-    if (req.headers.authorization.startsWith("Bearer ")) {
-        token = req.headers.authorization.substring(7, req.headers.authorization.length);
-    } else {
-        //Error
-    }
-    const decoded = jwt.verify(token, "MyVerySecretWord");
-    var userId = decoded.uid;
-    console.log(userId);
 
     User.findOne({ "_id": userId }, (err, doc) => {
         if(!err) {
-             res.json({
+            return res.json({
                 "status": "success",
                 "data": {
                     "balance": doc.balance,
                 }
+            });
+        } else {
+            return res.json({
+                "status": "error",
+                "message": "Error getting user balance",
             });
         }
     });
