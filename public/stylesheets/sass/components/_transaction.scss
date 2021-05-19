@@ -1,0 +1,83 @@
+//Homepagina
+.transactions {
+    padding-top: 1em;
+}
+
+.transaction {
+    padding:0em 0;
+    display: flex;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+
+    .transaction-info {
+        margin: 0;
+        padding: 0;
+        line-height: 12px;
+
+        .transaction-name {
+            font-size: 14px;
+        }
+        .transaction-time {
+            font-size: 12px;
+            color: colors.$lightgray;
+        }
+    }
+    .transaction-amount {
+        position: absolute;
+        right: 40px;
+
+        .money {
+            font-weight: bold;
+        }
+    }
+
+    .transaction-amount--negative {
+        color: colors.$tomatored;
+    }
+
+    .transaction-amount--positive {
+        color: colors.$moneygreen;
+    }
+
+    .transaction--icon {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 9px;
+        margin-right: 0.5em;
+    }
+
+    .transaction--icon.icon-blue {
+        background-color: colors.$coolblue;
+        box-shadow: 0px 0px 0px 3px colors.$fadedblue;
+    }
+
+    .transaction--icon.icon-orange {
+        background-color: colors.$fruitorange;
+        box-shadow: 0px 0px 0px 3px colors.$fadedorange;
+    }
+
+    .transaction--icon.icon-red {
+        background-color: colors.$tomatored;
+        box-shadow: 0px 0px 0px 3px colors.$fadedred;
+    }
+
+    .transaction--icon.icon-green {
+        background-color: colors.$moneygreen;
+        box-shadow: 0px 0px 0px 3px colors.$fadedgreen;
+    }
+
+    .transaction--icon.icon-purple {
+        background-color: colors.$grapepurple;
+        box-shadow: 0px 0px 0px 3px colors.$fadedpurple;
+    }
+}
+
+.separator {
+    display: flex;
+    margin: auto;
+    padding: 0.75em 0;
+}

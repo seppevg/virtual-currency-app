@@ -28,3 +28,39 @@
     background-color: colors.$white;
     padding: 16px;
 }
+
+.color-list {
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.color-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+     .icon {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        margin: 0 1em;
+    }
+
+    .icon-orange {
+        background-color: colors.$fruitorange;
+    }
+    .icon-blue {
+        background-color: colors.$coolblue;
+    }
+    .icon-red {
+        background-color: colors.$tomatored;
+    }
+    .icon-green {
+        background-color: colors.$moneygreen;
+    }
+    .icon-purple {
+        background-color: colors.$grapepurple;
+    }
+}
