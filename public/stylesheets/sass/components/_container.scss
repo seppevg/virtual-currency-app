@@ -38,12 +38,17 @@
 }
 
 .container--nav {
+    position: fixed;
+    bottom: 20px;
+    z-index: 10;
+    width: calc(100% - 40px);
     border-radius: 5em;
     margin: 0px 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 1em;
+    background-color: white;
 
     svg path {
         fill: colors.$notactivegray;
