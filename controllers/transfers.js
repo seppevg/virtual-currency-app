@@ -74,10 +74,33 @@ const getTransferById = (req, res) => {
 };
 
 const createTransfer = (req, res) => {
-    users.getUserById(getIdFromJWT(req), (result) => {
+    let senderId = getIdFromJWT(req);
+    if(!senderId) {
+        return res.json({
+            "status": "error",
+            "message": "No valid JWT token has been given",
+        });
+    }
+
+    users.getUserById(senderId, (result) => {
         let sender = result;
+
+        if(!sender) {
+            return res.json({
+                "status": "error",
+                "message": "A user was not found based on this sender ID",
+            });
+        }
+
         users.getUserByName(req.body.receiver, (result) => {
             let receiver = result;
+
+            if(!receiver) {
+                return res.json({
+                    "status": "error",
+                    "message": "A user was not found based on this receiver name",
+                });
+            }
                     
             let transfer = new Transfer();
             transfer.sender = { "_id": sender._id, "name": sender.name, };
@@ -85,6 +108,9 @@ const createTransfer = (req, res) => {
             transfer.amount = req.body.amount;
             transfer.reason = req.body.reason;
             transfer.date = Date.now();
+
+            if(req.body.comment)
+                transfer.comment = req.body.comment;
 
             if (req.body && req.body.receiver && req.body.amount) {
                 transfer.save((err, doc) => {
