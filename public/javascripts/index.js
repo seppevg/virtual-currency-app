@@ -64,25 +64,23 @@ fetch('./api/transfers', {
 
             if(transfer.amount > 0) { // Geld ontvangen
                 html +=
-                `<div class='transaction'>
-                    <div class='transaction--icon ${ transactionClass }'></div> 
-                    <!--<img class='icon--transaction' src="/images/orange_transaction.svg" alt="transaction">-->
-                    <div class='transaction-info'>
-                        <p class='transaction-name'>${ transfer.receiver.name }</p>
-                        <p class='transaction-time'>${ timeSince(new Date(transfer.date)) } ago</p>
+                `<div class='list-item'>
+                    <div class='list-item--icon ${ transactionClass }'></div> 
+                    <div class='list-item-info'>
+                        <p class='list-item-name'>${ transfer.receiver.name }</p>
+                        <p class='list-item-subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
                     </div>
-                    <p class='transaction-amount transaction-amount--positive'><span class='money'>+${ transfer.amount }</span> MLA</p>
+                    <p class='list-item-amount list-item-amount--positive'><span class='money'>+${ transfer.amount }</span> MLA</p>
                 </div>`
             } else { // Geld gestort
                 html += `
-                <div class='transaction'>
-                    <div class='transaction--icon ${ transactionClass }'></div> 
-                    <!--<img class='icon--transaction' src="/images/orange_transaction.svg" alt="transaction">-->
-                    <div class='transaction-info'>
-                        <p class='transaction-name'>${ transfer.receiver.name }</p>
-                        <p class='transaction-time'>${ timeSince(new Date(transfer.date)) } ago</p>
+                <div class='list-item'>
+                    <div class='list-item--icon ${ transactionClass }'></div> 
+                    <div class='list-item-info'>
+                        <p class='list-item-name'>${ transfer.receiver.name }</p>
+                        <p class='list-item-subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
                     </div>
-                    <p class='transaction-amount transaction-amount--negative'><span class='money'>${ transfer.amount }</span> MLA</p>
+                    <p class='list-item-amount list-item-amount--negative'><span class='money'>${ transfer.amount }</span> MLA</p>
                 </div>`
             }
             transactionList.innerHTML += html;

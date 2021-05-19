@@ -280,67 +280,67 @@
   fill: #FA885A;
 }
 
-.transactions {
+.list {
   padding-top: 1em;
 }
 
-.transaction {
+.list-item {
   padding: 0em 0;
   display: flex;
   align-items: center;
 }
-.transaction p {
+.list-item p {
   margin: 0;
 }
-.transaction .transaction-info {
+.list-item .list-item-info {
   margin: 0;
   padding: 0;
   line-height: 12px;
 }
-.transaction .transaction-info .transaction-name {
+.list-item .list-item-info .list-item-name {
   font-size: 14px;
 }
-.transaction .transaction-info .transaction-time {
+.list-item .list-item-info .list-item-subtext {
   font-size: 12px;
   color: #C4C4C4;
 }
-.transaction .transaction-amount {
+.list-item .list-item-amount {
   position: absolute;
   right: 40px;
 }
-.transaction .transaction-amount .money {
+.list-item .list-item-amount .money {
   font-weight: bold;
 }
-.transaction .transaction-amount--negative {
+.list-item .list-item-amount--negative {
   color: #EA526F;
 }
-.transaction .transaction-amount--positive {
+.list-item .list-item-amount--positive {
   color: #6DD797;
 }
-.transaction .transaction--icon {
+.list-item .list-item--icon {
   display: block;
   width: 18px;
   height: 18px;
   border-radius: 9px;
   margin-right: 0.5em;
 }
-.transaction .transaction--icon.icon-blue {
+.list-item .list-item--icon.icon-blue {
   background-color: #25CED1;
   box-shadow: 0px 0px 0px 3px rgba(37, 206, 209, 0.33);
 }
-.transaction .transaction--icon.icon-orange {
+.list-item .list-item--icon.icon-orange {
   background-color: #FA885A;
   box-shadow: 0px 0px 0px 3px rgba(250, 136, 90, 0.33);
 }
-.transaction .transaction--icon.icon-red {
+.list-item .list-item--icon.icon-red {
   background-color: #EA526F;
   box-shadow: 0px 0px 0px 3px rgba(234, 82, 111, 0.33);
 }
-.transaction .transaction--icon.icon-green {
+.list-item .list-item--icon.icon-green {
   background-color: #6DD797;
   box-shadow: 0px 0px 0px 3px rgba(109, 215, 151, 0.33);
 }
-.transaction .transaction--icon.icon-purple {
+.list-item .list-item--icon.icon-purple {
   background-color: #B66AE4;
   box-shadow: 0px 0px 0px 3px rgba(182, 106, 228, 0.33);
 }
