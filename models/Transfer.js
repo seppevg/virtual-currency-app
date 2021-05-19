@@ -7,6 +7,7 @@ const transferSchema = new Schema({
     amount: Number,
     date: Date,
     reason: String,
+    comment: String,
 });
 
 const Transfer = mongoose.model('Transfer', transferSchema);
