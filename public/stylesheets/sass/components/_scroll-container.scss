@@ -1,0 +1,8 @@
+.scroll-container {
+    border: 1px solid colors.$grayish;
+    padding: 1em;
+    border-radius: 8px;
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

@@ -3,7 +3,7 @@
     padding-top: 1em;
 }
 
-.list-item {
+.list__item {
     padding:0em 0;
     display: flex;
     align-items: center;
@@ -12,37 +12,36 @@
         margin: 0;
     }
 
-    .list-item-info {
+    .list__item-info {
         margin: 0;
         padding: 0;
         line-height: 12px;
 
-        .list-item-name {
+        .list__item--name {
             font-size: 14px;
         }
-        .list-item-subtext {
+        .list__item--subtext {
             font-size: 12px;
             color: colors.$lightgray;
         }
     }
-    .list-item-amount {
-        position: absolute;
-        right: 40px;
+    .list__item--amount {
+        margin-left: auto;
 
         .money {
             font-weight: bold;
         }
     }
 
-    .list-item-amount--negative {
+    .list__item--amount--negative {
         color: colors.$tomatored;
     }
 
-    .list-item-amount--positive {
+    .list__item--amount--positive {
         color: colors.$moneygreen;
     }
 
-    .list-item--icon {
+    .list__item--icon {
         display: block;
         width: 18px;
         height: 18px;
@@ -50,27 +49,27 @@
         margin-right: 0.5em;
     }
 
-    .list-item--icon.icon-blue {
+    .list__item--icon.icon-blue {
         background-color: colors.$coolblue;
         box-shadow: 0px 0px 0px 3px colors.$fadedblue;
     }
 
-    .list-item--icon.icon-orange {
+    .list__item--icon.icon-orange {
         background-color: colors.$fruitorange;
         box-shadow: 0px 0px 0px 3px colors.$fadedorange;
     }
 
-    .list-item--icon.icon-red {
+    .list__item--icon.icon-red {
         background-color: colors.$tomatored;
         box-shadow: 0px 0px 0px 3px colors.$fadedred;
     }
 
-    .list-item--icon.icon-green {
+    .list__item--icon.icon-green {
         background-color: colors.$moneygreen;
         box-shadow: 0px 0px 0px 3px colors.$fadedgreen;
     }
 
-    .list-item--icon.icon-purple {
+    .list__item--icon.icon-purple {
         background-color: colors.$grapepurple;
         box-shadow: 0px 0px 0px 3px colors.$fadedpurple;
     }

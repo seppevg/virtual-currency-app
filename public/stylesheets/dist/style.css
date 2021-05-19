@@ -313,63 +313,62 @@
   padding-top: 1em;
 }
 
-.list-item {
+.list__item {
   padding: 0em 0;
   display: flex;
   align-items: center;
 }
-.list-item p {
+.list__item p {
   margin: 0;
 }
-.list-item .list-item-info {
+.list__item .list__item-info {
   margin: 0;
   padding: 0;
   line-height: 12px;
 }
-.list-item .list-item-info .list-item-name {
+.list__item .list__item-info .list__item--name {
   font-size: 14px;
 }
-.list-item .list-item-info .list-item-subtext {
+.list__item .list__item-info .list__item--subtext {
   font-size: 12px;
   color: #C4C4C4;
 }
-.list-item .list-item-amount {
-  position: absolute;
-  right: 40px;
+.list__item .list__item--amount {
+  margin-left: auto;
 }
-.list-item .list-item-amount .money {
+.list__item .list__item--amount .money {
   font-weight: bold;
 }
-.list-item .list-item-amount--negative {
+.list__item .list__item--amount--negative {
   color: #EA526F;
 }
-.list-item .list-item-amount--positive {
+.list__item .list__item--amount--positive {
   color: #6DD797;
 }
-.list-item .list-item--icon {
+.list__item .list__item--icon {
   display: block;
   width: 18px;
   height: 18px;
   border-radius: 9px;
   margin-right: 0.5em;
 }
-.list-item .list-item--icon.icon-blue {
+.list__item .list__item--icon.icon-blue {
   background-color: #25CED1;
   box-shadow: 0px 0px 0px 3px rgba(37, 206, 209, 0.33);
 }
-.list-item .list-item--icon.icon-orange {
+.list__item .list__item--icon.icon-orange {
   background-color: #FA885A;
   box-shadow: 0px 0px 0px 3px rgba(250, 136, 90, 0.33);
 }
-.list-item .list-item--icon.icon-red {
+.list__item .list__item--icon.icon-red {
   background-color: #EA526F;
   box-shadow: 0px 0px 0px 3px rgba(234, 82, 111, 0.33);
 }
-.list-item .list-item--icon.icon-green {
+.list__item .list__item--icon.icon-green {
   background-color: #6DD797;
   box-shadow: 0px 0px 0px 3px rgba(109, 215, 151, 0.33);
 }
-.list-item .list-item--icon.icon-purple {
+.list__item .list__item--icon.icon-purple {
   background-color: #B66AE4;
   box-shadow: 0px 0px 0px 3px rgba(182, 106, 228, 0.33);
 }
@@ -378,6 +377,15 @@
   display: flex;
   margin: auto;
   padding: 0.75em 0;
+}
+
+.scroll-container {
+  border: 1px solid #CCCCCC;
+  padding: 1em;
+  border-radius: 8px;
+  height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 * {

@@ -6,7 +6,8 @@ block content
         .icon
             h1= 'History'
             img.icon--help(src="/images/questionmark.svg", alt="questionmark")
-        .transactions
+        .scroll-container
+            .transactions
     .nav
         a(href='/')
             <svg class="icon--homepage" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,4 +24,11 @@ block content
                 <path d="M10.925 0.574951V6.89995C10.925 7.05245 10.9856 7.1987 11.0934 7.30654C11.2012 7.41437 11.3475 7.47495 11.5 7.47495H17.825L10.925 0.574951Z" fill="#DEDEDE"/>
             </svg> 
             .link.link--history History
+    .popup
+        .container.container--popup
+            strong.popup-title Login error 
+            p.popup-text Error message
+            button.button.button--popup Ok
+    
+
   script(src="/javascripts/history.js")

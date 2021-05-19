@@ -37,11 +37,10 @@ fetch('./api/transfers', {
     return result.json();
 }).then(json => {
     json.data.transfers.reverse().forEach((transfer, index) => {
-        if(index < 3) {
-            let html = '';
+        if(index < 3 ) {
             // Separator
             if(index > 0) 
-                html += '<img class="separator" src="/images/separatorline.svg" alt="separator line">';
+                transactionList.innerHTML += '<img class="separator" src="/images/separatorline.svg" alt="separator line">';
 
             // Get icon color based on transfer reason
             switch(transfer.reason) {
@@ -62,30 +61,40 @@ fetch('./api/transfers', {
                     break;
             }
 
+            let transferElement = document.createElement('div')
+            transferElement.classList.add('list__item');
+            transferElement.setAttribute('comment', transfer.comment);
+
             if(transfer.amount > 0) { // Geld ontvangen
-                html +=
-                `<div class='list-item'>
-                    <div class='list-item--icon ${ transactionClass }'></div> 
-                    <div class='list-item-info'>
-                        <p class='list-item-name'>${ transfer.receiver.name }</p>
-                        <p class='list-item-subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
+                transferElement.innerHTML += `
+                    <div class='list__item--icon ${ transactionClass }'></div> 
+                    <div class='list__item-info'>
+                        <p class='list__item--name'>${ transfer.receiver.name }</p>
+                        <p class='list__item--subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
                     </div>
-                    <p class='list-item-amount list-item-amount--positive'><span class='money'>+${ transfer.amount }</span> MLA</p>
-                </div>`
+                    <p class='list__item--amount list__item--amount--positive'><span class='money'>+${ transfer.amount }</span> MLA</p>`
             } else { // Geld gestort
-                html += `
-                <div class='list-item'>
-                    <div class='list-item--icon ${ transactionClass }'></div> 
-                    <div class='list-item-info'>
-                        <p class='list-item-name'>${ transfer.receiver.name }</p>
-                        <p class='list-item-subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
+                transferElement.innerHTML  += `
+                    <div class='list__item--icon ${ transactionClass }'></div> 
+                    <div class='list__item-info'>
+                        <p class='list__item--name'>${ transfer.receiver.name }</p>
+                        <p class='list__item--subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
                     </div>
-                    <p class='list-item-amount list-item-amount--negative'><span class='money'>${ transfer.amount }</span> MLA</p>
-                </div>`
+                    <p class='list__item--amount list__item--amount--negative'><span class='money'>${ transfer.amount }</span> MLA</p>`
             }
-            transactionList.innerHTML += html;
+            transactionList.append(transferElement);
         }
-    })
+    });
+
+    // Make clickable voor comments
+    document.querySelectorAll('.transactions .list__item').forEach(transferElement => {
+        transferElement.addEventListener('click', (e) => {
+            if(transferElement.getAttribute('comment') == 'undefined')
+                showPopUp('Transaction comment', '<i>No comment was added to this transaction.</i>');
+            else
+                showPopUp('Transaction comment', transferElement.getAttribute('comment'));
+        })
+    });
 }).catch(err => {
 -   console.log("error");
 });
