@@ -25,7 +25,7 @@
     min-width: 250px;
     text-align: center;
     border-radius: 16px;
-    background-color: colors.$white;
+    background-color: $white;
     padding: 16px;
 }
 
@@ -49,18 +49,18 @@
     }
 
     .icon-orange {
-        background-color: colors.$fruitorange;
+        background-color: $fruitorange;
     }
     .icon-blue {
-        background-color: colors.$coolblue;
+        background-color: $coolblue;
     }
     .icon-red {
-        background-color: colors.$tomatored;
+        background-color: $tomatored;
     }
     .icon-green {
-        background-color: colors.$moneygreen;
+        background-color: $moneygreen;
     }
     .icon-purple {
-        background-color: colors.$grapepurple;
+        background-color: $grapepurple;
     }
 }

@@ -1,10 +1,12 @@
+@use '../colors';
+
 .disclaimer {
     text-align: center;
-    color: colors.$grayish;
+    color: $grayish;
     font-size: 0.8em;
     padding: 0px 20px;
 }
 
 .disclaimer a {
-    color: colors.$coolblue;
+    color: $coolblue;
 }

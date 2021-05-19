@@ -1,5 +1,7 @@
+@use '../colors';
+
 .scroll-container {
-    border: 1px solid colors.$grayish;
+    border: 1px solid $grayish;
     padding: 1em;
     border-radius: 8px;
     height: 60vh;

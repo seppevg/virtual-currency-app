@@ -1,9 +1,11 @@
+@use '../colors';
+
 .button {
     display: block;
     width: 100%;
     border-radius: 100px;
-    background-color: colors.$tomatored;
-    color: colors.$white;
+    background-color: $tomatored;
+    color: $white;
     border: none;
     padding: 6px 0px;
     font-family: Mukta;
@@ -22,11 +24,11 @@
 }
 
 .button--primary {
-    background-color: colors.$coolblue;
+    background-color: $coolblue;
 }
 
 .button--popup {
-    background-color: colors.$fruitorange;
+    background-color: $fruitorange;
 }
 
 .button--transaction {

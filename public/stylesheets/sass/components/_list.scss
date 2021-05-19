@@ -1,4 +1,5 @@
-//Homepagina
+@use '../colors';
+
 .list {
     padding-top: 1em;
 }
@@ -22,7 +23,7 @@
         }
         .list__item--subtext {
             font-size: 12px;
-            color: colors.$lightgray;
+            color: $lightgray;
         }
     }
     .list__item--amount {
@@ -34,11 +35,11 @@
     }
 
     .list__item--amount--negative {
-        color: colors.$tomatored;
+        color: $tomatored;
     }
 
     .list__item--amount--positive {
-        color: colors.$moneygreen;
+        color: $moneygreen;
     }
 
     .list__item--icon {
@@ -50,28 +51,28 @@
     }
 
     .list__item--icon.icon-blue {
-        background-color: colors.$coolblue;
-        box-shadow: 0px 0px 0px 3px colors.$fadedblue;
+        background-color: $coolblue;
+        box-shadow: 0px 0px 0px 3px $fadedblue;
     }
 
     .list__item--icon.icon-orange {
-        background-color: colors.$fruitorange;
-        box-shadow: 0px 0px 0px 3px colors.$fadedorange;
+        background-color: $fruitorange;
+        box-shadow: 0px 0px 0px 3px $fadedorange;
     }
 
     .list__item--icon.icon-red {
-        background-color: colors.$tomatored;
-        box-shadow: 0px 0px 0px 3px colors.$fadedred;
+        background-color: $tomatored;
+        box-shadow: 0px 0px 0px 3px $fadedred;
     }
 
     .list__item--icon.icon-green {
-        background-color: colors.$moneygreen;
-        box-shadow: 0px 0px 0px 3px colors.$fadedgreen;
+        background-color: $moneygreen;
+        box-shadow: 0px 0px 0px 3px $fadedgreen;
     }
 
     .list__item--icon.icon-purple {
-        background-color: colors.$grapepurple;
-        box-shadow: 0px 0px 0px 3px colors.$fadedpurple;
+        background-color: $grapepurple;
+        box-shadow: 0px 0px 0px 3px $fadedpurple;
     }
 }
 

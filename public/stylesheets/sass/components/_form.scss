@@ -1,11 +1,13 @@
+@use '../colors';
+
 .form__field {
     display: block;
     width: 100%;
     padding: 2px 6px;
     margin-bottom: 16px;
     border: none;
-    border-bottom: 1px solid colors.$grayish;
-    color: colors.$fakeblack;
+    border-bottom: 1px solid $grayish;
+    color: $fakeblack;
     font-family: Mukta;
 }
 
@@ -15,7 +17,7 @@
 
 .form__field:focus {
     outline: none;
-    border-bottom: 1px solid colors.$coolblue;
+    border-bottom: 1px solid $coolblue;
 }  
 
 .form__field#transaction_amount {
@@ -24,12 +26,12 @@
 
 .form__label {
     font-weight: bolder;
-    color: colors.$fakeblack;
+    color: $fakeblack;
     margin: 0;
 }
 
 .form__sub-label {
-    color: colors.$grayish;
+    color: $grayish;
     margin: 0px;
     margin-bottom: 16px;
     font-size: 0.8em;
@@ -49,11 +51,11 @@
         width: 100%;
         padding: 2px 6px;
         margin-bottom: 16px;
-        border: 1px solid colors.$grayish;
+        border: 1px solid $grayish;
         border-radius: 2em;
-        color: colors.$fakeblack;
+        color: $fakeblack;
         font-family: Mukta;
-        background: colors.$white;
+        background: $white;
     }
     textarea {
         border-radius: 0.5em;
@@ -62,5 +64,5 @@
 
 #transaction_type:focus, #transaction_comment:focus {
     outline: none;
-    border: 1px solid colors.$coolblue;
+    border: 1px solid $coolblue;
 }  
