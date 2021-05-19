@@ -4,13 +4,13 @@ block content
   .container.container--login 
     img.logo(src="/images/logo.png", alt="Logo")
     .form.form--login 
-      p.label Register 
-      p.sub-label Enter your information to make an account
-      input.field#name(type="text" placeholder="Name")
-      input.field#email(type="text" placeholder="E-mail address")
+      p.form__label Register 
+      p.form__sub-label Enter your information to make an account
+      input.form__field#name(type="text" placeholder="Name")
+      input.form__field#email(type="text" placeholder="E-mail address")
       .icon
         img.icon--eye(src="/images/eye.svg", alt="eye")
-        input.field#password(type="password" placeholder="Password")
+        input.form__field#password(type="password" placeholder="Password")
       button.button.button--primary.button--signup Register
     p.disclaimer Already have an account? #[a(href="/login") Log in.]
   .popup

@@ -7,10 +7,10 @@ block content
         .form.form--transaction 
             .icon
                 img.icon--eye(src="/images/search.svg", alt="magnifying glass")
-                input.field#transaction_name(type="text" placeholder="Name")
+                input.form__field#transaction_name(type="text" placeholder="Name")
             .coins
-                p.label Coins 
-                input.field#transaction_amount(type="number" placeholder="00,00")
+                p.form__label Coins 
+                input.form__field#transaction_amount(type="number" placeholder="00,00")
             select#transaction_type(name="transaction_type")
                 option(value='0', selected= true, disabled) Choose transaction type...
                 option(value='Development help') Development help
@@ -18,7 +18,7 @@ block content
                 option(value='Feedback') Feedback
                 option(value='Meeting deadlines') Meeting deadlines
                 option(value='Other') Other
-            textarea.field#transaction_comment(placeholder="Extra comment (optional)" name="transaction_comment", cols="30", rows="6")
+            textarea.form__field#transaction_comment(placeholder="Extra comment (optional)" name="transaction_comment", cols="30", rows="6")
         button.button.button--primary.button--sendTransaction Send transaction 
 
     .nav
