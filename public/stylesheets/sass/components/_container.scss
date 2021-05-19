@@ -7,7 +7,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: white;
+    background-color: colors.$white;
     padding: 40px;
     margin: 0px 20px;
 }
@@ -20,7 +20,7 @@
     background-image: url('../../images/transaction_bg.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    color: white;
+    color: colors.$white;
     text-align: center;
 
     .balance-amount {
@@ -37,20 +37,4 @@
     }
 }
 
-.container--nav {
-    position: fixed;
-    bottom: 20px;
-    z-index: 10;
-    width: calc(100% - 40px);
-    border-radius: 5em;
-    margin: 0px 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1em;
-    background-color: white;
 
-    svg path {
-        fill: #DEDEDE;
-    }
-}

@@ -1,0 +1,68 @@
+.nav {
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    bottom: 20px;
+    z-index: 10;
+    width: calc(100% - 40px);
+    border-radius: 5em;
+    margin: 0px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em;
+    background-color: colors.$white;
+
+    svg path {
+        fill: colors.$notactivegray;
+    }
+}
+
+.link {
+    text-decoration: none;
+    padding-left: 0.5em;
+}
+
+.link--home {
+    color: colors.$tomatored;
+}
+
+.link--transaction {
+    color: colors.$fruitorange;
+}
+
+.link--history {
+    color: colors.$coolblue;
+}
+
+.nav--active {
+    display: flex;
+    align-items: center;
+    padding: 0.25em 1em;
+    border-radius: 5em;
+    text-decoration: none;
+}
+
+.nav--active--home {
+    background-color: colors.$fadedred;
+
+    svg path {
+        fill: colors.$tomatored;
+    }
+}
+
+.nav--active--transaction {
+    background-color: colors.$fadedorange;
+
+    svg path {
+        fill: colors.$fruitorange;
+    }
+}
+
+.nav--active--history {
+    background-color: colors.$fadedblue;
+
+    svg path {
+        fill: colors.$coolblue;
+    }
+}
+
