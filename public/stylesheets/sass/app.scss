@@ -1,15 +1,14 @@
 @use 'colors';
 @use 'fonts';
 @import 'components/container';
-@import 'components/logo';
 @import 'components/button';
 @import 'components/input';
 @import 'components/label';
 @import 'components/disclaimer';
 @import 'components/icon';
 @import 'components/popup';
-@import 'components/link';
-@import 'components/nav';
+@import 'components/navigation';
+@import 'components/form';
 @import 'components/transaction';
 
 
@@ -31,6 +30,12 @@ body {
     background-repeat: no-repeat;
 }
 
+.logo {
+    display: block;
+    max-width: 90%;
+    margin: 70px auto;
+}
+
 h1 {
     font: 32px Mukta, Helvetica, Arial, sans-serif;
     font-weight: bold;
@@ -45,37 +50,3 @@ h1 {
     background: rgb(255, 255, 255);
     height: 100vh;
 }
-
-//Transactionpagina
-.coins {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.transaction_header {
-    margin-bottom: 1em;
-}
-
-.form--transaction {
-
-    select, textarea {
-        display: block;
-        width: 100%;
-        padding: 2px 6px;
-        margin-bottom: 16px;
-        border: 1px solid colors.$grayish;
-        border-radius: 2em;
-        color: colors.$fakeblack;
-        font-family: Mukta;
-        background: colors.$white;
-    }
-    textarea {
-        border-radius: 0.5em;
-    }
-}
-
-#transaction_type:focus, #transaction_comment:focus {
-    outline: none;
-    border: 1px solid colors.$coolblue;
-}  

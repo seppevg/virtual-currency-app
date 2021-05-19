@@ -1,17 +1,17 @@
 const Transfer = require('../models/Transfer');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-var ObjectId = require('mongodb').ObjectId; 
+var ObjectId = require('mongodb').ObjectId;
 const users = require('./users');
 
 //JWT Converter
 const getIdFromJWT = (req) => {
-    if(req.headers.authorization.startsWith("Bearer ")) {
+    if (req.headers.authorization.startsWith("Bearer ")) {
         token = req.headers.authorization.substring(7, req.headers.authorization.length);
     } else {
         return false;
     }
-    
+
     const decoded = jwt.verify(token, "MyVerySecretWord");
     return decoded.uid;
 }
@@ -21,7 +21,7 @@ const getTransfersFromUser = (req, res, next) => {
     // JWT naar User ID
     let userId = getIdFromJWT(req);
 
-    if(!userId) {
+    if (!userId) {
         return res.json({
             "status": "error",
             "message": "Please provide valid body elements.",
@@ -78,10 +78,12 @@ const createTransfer = (req, res) => {
         let sender = result;
         users.getUserByName(req.body.receiver, (result) => {
             let receiver = result;
-                    
+            console.log(req);
+            console.log(req.body);
+
             let transfer = new Transfer();
             transfer.sender = { "_id": sender._id, "name": sender.name, };
-            transfer.receiver =  { "_id": receiver._id, "name": receiver.name, };
+            transfer.receiver = { "_id": receiver._id, "name": receiver.name, };
             transfer.amount = req.body.amount;
             transfer.reason = req.body.reason;
             transfer.date = Date.now();
@@ -110,7 +112,7 @@ const createTransfer = (req, res) => {
 const getBalance = (req, res) => {
     let userId = getIdFromJWT(req);
 
-    if(!userId) {
+    if (!userId) {
         res.json({
             "status": "error",
             "message": "Please provide valid body elements.",
@@ -118,7 +120,7 @@ const getBalance = (req, res) => {
     }
 
     User.findOne({ "_id": userId }, (err, doc) => {
-        if(!err) {
+        if (!err) {
             return res.json({
                 "status": "success",
                 "data": {
