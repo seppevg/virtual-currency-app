@@ -21,11 +21,11 @@
     transform: scale(1);
 }
 
-.button.button--blue {
+.button--primary {
     background-color: colors.$coolblue;
 }
 
-.button.button--orange {
+.button--popup {
     background-color: colors.$fruitorange;
 }
 
@@ -34,5 +34,5 @@
 }
 
 .button--sendTransaction {
-    margin: 2em 0 3em 0;    
+    margin-top: 2em;  
 }
