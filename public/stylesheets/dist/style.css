@@ -109,6 +109,10 @@
   text-align: center;
 }
 
+.icon img.icon--help--history {
+  top: 50px;
+}
+
 .icon--transaction {
   padding-right: 0.5em;
 }
@@ -156,9 +160,9 @@
 }
 .color-list li .icon {
   display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
   margin: 0 1em;
 }
 .color-list li .icon-orange {

@@ -68,6 +68,21 @@ fetch('./api/transfers', {
 -   console.log("error");
 });
 
+// Help icon interaction
+const iconHelp = document.querySelector('.icon--help--history');
+iconHelp.addEventListener('click', (e) => {
+    showPopUp("Reason colors", 
+        `<ul class='color-list'>
+            <li><div class='icon icon-orange'></div>Development help</li>
+            <li><div class='icon icon-blue'></div>Design help</li>
+            <li><div class='icon icon-red'></div>Feedback</li>
+            <li><div class='icon icon-green'></div>Meeting deadlines</li>
+            <li><div class='icon icon-purple'></div>Other</li>
+        </ul>`
+    );
+})
+
+
 /* HELPER FUNCTIONS */
 // Time converter function
 function timeSince(date) {
