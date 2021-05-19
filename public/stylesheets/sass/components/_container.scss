@@ -7,7 +7,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: white;
+    background-color: colors.$white;
     padding: 40px;
     margin: 0px 20px;
 }
@@ -20,7 +20,7 @@
     background-image: url('../../images/transaction_bg.svg');
     background-size: cover;
     background-repeat: no-repeat;
-    color: white;
+    color: colors.$white;
     text-align: center;
 
     .balance-amount {
@@ -46,6 +46,6 @@
     padding: 1em;
 
     svg path {
-        fill: #DEDEDE;
+        fill: colors.$notactivegray;
     }
 }

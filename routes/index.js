@@ -21,4 +21,9 @@ router.get('/transaction', (req, res, next) => {
   res.render('transaction', { title: 'Moola | Transaction' });
 });
 
+/* GET history page. */
+router.get('/history', (req, res, next) => {
+  res.render('history', { title: 'Moola | History' });
+});
+
 module.exports = router;
