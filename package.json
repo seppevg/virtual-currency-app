@@ -10,7 +10,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.6",
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.14",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^4.1.0"
   }
