@@ -94,7 +94,6 @@ const createTransfer = (req, res) => {
 
         users.getUserByName(req.body.receiver, (result) => {
             let receiver = result;
-<<<<<<< HEAD
 
             if(!receiver) {
                 return res.json({
@@ -103,11 +102,6 @@ const createTransfer = (req, res) => {
                 });
             }
                     
-=======
-            console.log(req);
-            console.log(req.body);
-
->>>>>>> 5c7031290c3568f6bd109984a1e293080848831e
             let transfer = new Transfer();
             transfer.sender = { "_id": sender._id, "name": sender.name, };
             transfer.receiver = { "_id": receiver._id, "name": receiver.name, };
