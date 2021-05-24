@@ -9,9 +9,11 @@ const apiRouter = require('./routes/api');
 const userRouter = require('./routes/users');
 const passport = require('./passport/passport');
 
+const config = require('config');
+
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost:27017/moola', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.get('Database.conn'), { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 

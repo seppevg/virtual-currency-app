@@ -3,6 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 var ObjectId = require('mongodb').ObjectId;
 const users = require('./users');
+const config = require('config');
 
 //JWT Converter
 const getIdFromJWT = (req) => {
@@ -12,7 +13,7 @@ const getIdFromJWT = (req) => {
         return false;
     }
 
-    const decoded = jwt.verify(token, "MyVerySecretWord");
+    const decoded = jwt.verify(token, config.get('jwt.secret'));
     return decoded.uid;
 }
 
