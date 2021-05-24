@@ -76,8 +76,23 @@
     }
 }
 
+.list__item:hover {
+    cursor: pointer;
+}
+
 .separator {
-    display: flex;
+    display: block;
+    width: 90%;
     margin: auto;
     padding: 0.75em 0;
+    background-image: url('/images/separatorline.svg');
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+@media only screen and (min-device-width: 768px) {
+    .index-layout .list {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+    }
 }

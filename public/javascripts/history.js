@@ -10,7 +10,7 @@ fetch('./api/transfers', {
     json.data.transfers.reverse().forEach((transfer, index) => {
         // Separator
         if(index > 0) 
-            transactionList.innerHTML += '<img class="separator" src="/images/separatorline.svg" alt="separator line">';
+            transactionList.innerHTML += '<div class="separator"></div>';
 
         // Get icon color based on transfer reason
         switch(transfer.reason) {

@@ -2,15 +2,15 @@ extends layout
 
 block content
   .background
-    .container--margin
+    .container--margin.index-layout
       h1= 'Balance'
       .container.container--balance
         strong.balance-amount 0.00
         p.balance-logo moola
       a(href="/transaction").button.button--primary.button--transaction Start transaction
       .icon
-        img.icon--help(src="/images/questionmark.svg", alt="questionmark")
         p.form__label Recent transactions
+        img.icon--help(src="/images/questionmark.svg", alt="questionmark")
       .list.transactions
         
   .nav

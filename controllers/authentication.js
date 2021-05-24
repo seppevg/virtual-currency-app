@@ -62,7 +62,7 @@ const login = async (req, res, next) => {
     const user = await User.authenticate()(req.body.email, req.body.password).then(result => {
 
         if (!result.user) {
-            res.json({
+            return res.json({
                 "status": "failed",
                 "message": "Login failed",
             })
@@ -73,13 +73,13 @@ const login = async (req, res, next) => {
             username: result.user.username,
         }, "MyVerySecretWord");
 
-        res.json({
+        return res.json({
             "status": "success",
             "data": { "token": token }
         });
 
     }).catch(error => {
-        res.json({
+        return res.json({
             "status": "error",
             "message": error
         });
