@@ -28,37 +28,8 @@ transactionButton.addEventListener('click', (e) => {
         return response.json();
     }).then(json => {
         if (json.status === 'success') {
-            let amount = json.data.transfer.amount;
-            fetch('./api/balance', {
-                method: "get",
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem('token')
-                }
-            }).then(result => {
-                return result.json();
-            }).then(json => {
-                let balance = json.data.balance;
-                balance -= amount;
-
-                fetch('./users/login', {
-                    method: "post",
-                    headers: {
-                        "Content-Type": 'application/json',
-                        "Authorization": "Bearer " + localStorage.getItem('token')
-                    },
-                    body: JSON.stringify({
-                        "balance": balance
-                    })
-                }).then(result => {
-                    return result.json();
-                }).then(json => {
-                    window.location.href = './';
-                }).catch(err => {
-                    console.log(err);
-                });
-            }).catch(err => {
-                console.log(err)
-            });
+            //Transaction succes
+            window.location.href = './';
         }
         else {
             // Transaction failed

@@ -114,10 +114,18 @@ const createTransfer = (req, res) => {
             if (req.body && req.body.receiver && req.body.amount) {
                 transfer.save((err, doc) => {
                     if (!err) {
-                        res.json({
-                            "status": "success",
-                            "data": {
-                                "transfer": doc,
+                        User.findByIdAndUpdate(sender._id, { $inc: { "balance": -req.body.amount } }, (err, docSender) => {
+                            if (!err) {
+                                User.findByIdAndUpdate(receiver._id, { $inc: { "balance": req.body.amount } }, (err, docReceiver) => {
+                                    if (!err) {
+                                        res.json({
+                                            "status": "success",
+                                            "data": {
+                                                "transfer": docReceiver,
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         });
                     }
