@@ -27,12 +27,6 @@ function minifyCss() {
         .pipe(gulp.dest('./public/stylesheets/clean_css'));
 }
 
-//Zoekt naar nieuwe bestanden in de bigImages map
-gulp.task("minifyImg", () => {
-    gulp.watch('./bigImages/*', minifyImg);
-});
-
-//Zoekt naar veranderingen in alle sass (scss) files
 exports.start = () => {
     watch('./public/stylesheets/sass/**/*.scss', sassToCss);
     gulp.watch('./bigImages/*', minifyImg);
