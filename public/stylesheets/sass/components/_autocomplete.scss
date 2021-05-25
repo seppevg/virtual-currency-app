@@ -1,0 +1,33 @@
+@import '../colors';
+
+.autocomplete-list {
+    display: none;
+    position: fixed;
+    top: 140px;
+    left: 40px;
+    background: $white;
+    border: 1px solid $grayish;
+    width: calc(100% - 80px);
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+
+.autocomplete-list p {
+    line-height: 15px;
+    padding-left: 8px;
+    font-size: 15px;
+    color: $fakeblack;
+}
+
+.autocomplete-list p:hover {
+    color: $coolblue;
+    cursor: pointer;
+}
+
+@media only screen and (min-device-width: 768px) {
+    .autocomplete-list {
+        top: calc(3% + 170px);
+        left: calc(15% + 40px);
+        width: calc(70% - 80px);
+    }
+}
