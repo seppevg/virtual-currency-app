@@ -25,7 +25,9 @@ function validateLogin() {
         if (json.status === 'success') {
             // Login success
             let token = json.data.token;
+            let id = json.data.id;
             localStorage.setItem("token", token);
+            localStorage.setItem("id", id);
             window.location.href = './';
         } else {
             // Login failed

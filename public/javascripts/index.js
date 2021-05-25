@@ -12,91 +12,111 @@ iconHelp.addEventListener('click', (e) => {
     );
 })
 
-// Check authentication and get balance
-fetch('./api/balance', {
-    "headers": {
-        "Authorization": "Bearer " + localStorage.getItem('token')
+update();
+function update() {
+    // Check authentication and get balance
+    fetch('./api/balance', {
+        "headers": {
+            "Authorization": "Bearer " + localStorage.getItem('token')
+        }
+    }).then(result => {
+        return result.json();
+    }).then(json => {
+        let balance = document.querySelector('.balance-amount');
+        balance.innerHTML = json.data.balance;
+    }).catch(err => {
+        console.log("You are unauthorized.")
+        window.location.href = './login';
+    });
+    
+    // Get recent transactions
+    const transactionList = document.querySelector('.transactions');
+    fetch('./api/transfers', {
+        "headers": {
+            "Authorization": "Bearer " + localStorage.getItem('token')
+        }
+    }).then(result => {
+        return result.json();
+    }).then(json => {
+        transactionList.innerHTML = "";
+        json.data.transfers.reverse().forEach((transfer, index) => {
+            if (index < 3) {
+                // Separator
+                if (index > 0)
+                    transactionList.innerHTML += '<div class="separator"></div>';
+    
+                // Get icon color based on transfer reason
+                switch (transfer.reason) {
+                    case "Development help":
+                        transactionClass = "icon-orange";
+                        break;
+                    case "Design help":
+                        transactionClass = "icon-blue";
+                        break;
+                    case "Feedback":
+                        transactionClass = "icon-red";
+                        break;
+                    case "Meeting deadlines":
+                        transactionClass = "icon-green";
+                        break;
+                    default:
+                        transactionClass = "icon-purple";
+                        break;
+                }
+    
+                let transferElement = document.createElement('div')
+                transferElement.classList.add('list__item');
+                transferElement.setAttribute('comment', transfer.comment);
+    
+                if (transfer.receiver._id == localStorage.getItem('id')) { // Geld ontvangen
+                    transferElement.innerHTML += `
+                        <div class='list__item--icon ${transactionClass}'></div> 
+                        <div class='list__item-info'>
+                            <p class='list__item--name'>${transfer.sender.name}</p>
+                            <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
+                        </div>
+                        <p class='list__item--amount list__item--amount--positive'><span class='money'>+${transfer.amount}</span> MLA</p>`
+                } else { // Geld gestort
+                    transferElement.innerHTML += `
+                        <div class='list__item--icon ${transactionClass}'></div> 
+                        <div class='list__item-info'>
+                            <p class='list__item--name'>${transfer.receiver.name}</p>
+                            <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
+                        </div>
+                        <p class='list__item--amount list__item--amount--negative'><span class='money'>-${transfer.amount}</span> MLA</p>`
+                }
+                transactionList.append(transferElement);
+            }
+        });
+    
+        // Make clickable voor comments
+        document.querySelectorAll('.transactions .list__item').forEach(transferElement => {
+            transferElement.addEventListener('click', (e) => {
+                if (transferElement.getAttribute('comment') == 'undefined')
+                    showPopUp('Transaction comment', '<i>No comment was added to this transaction.</i>');
+                else
+                    showPopUp('Transaction comment', transferElement.getAttribute('comment'));
+            })
+        });
+    }).catch(err => {
+        -   console.log("error");
+    });
+}
+
+// Primus
+// Connect to server
+let primus =  Primus.connect('', {
+    reconnect: {
+        max: Infinity // Number: The max delay before we try to reconnect.
+        , min: 500 // Number: The minimum delay before we try reconnect.
+        , retries: 10 // Number: How many times we should try to reconnect.
     }
-}).then(result => {
-    return result.json();
-}).then(json => {
-    let balance = document.querySelector('.balance-amount');
-    balance.innerHTML = json.data.balance;
-}).catch(err => {
-    console.log("You are unauthorized.")
-    window.location.href = './login';
 });
 
-// Get recent transactions
-const transactionList = document.querySelector('.transactions');
-fetch('./api/transfers', {
-    "headers": {
-        "Authorization": "Bearer " + localStorage.getItem('token')
+primus.on('data', (data) => {
+    if(data.type == 'transfer') {
+        update();
     }
-}).then(result => {
-    return result.json();
-}).then(json => {
-    json.data.transfers.reverse().forEach((transfer, index) => {
-        if (index < 3) {
-            // Separator
-            if (index > 0)
-                transactionList.innerHTML += '<div class="separator"></div>';
-
-            // Get icon color based on transfer reason
-            switch (transfer.reason) {
-                case "Development help":
-                    transactionClass = "icon-orange";
-                    break;
-                case "Design help":
-                    transactionClass = "icon-blue";
-                    break;
-                case "Feedback":
-                    transactionClass = "icon-red";
-                    break;
-                case "Meeting deadlines":
-                    transactionClass = "icon-green";
-                    break;
-                default:
-                    transactionClass = "icon-purple";
-                    break;
-            }
-
-            let transferElement = document.createElement('div')
-            transferElement.classList.add('list__item');
-            transferElement.setAttribute('comment', transfer.comment);
-
-            if (transfer.amount < 0) { // Geld ontvangen
-                transferElement.innerHTML += `
-                    <div class='list__item--icon ${transactionClass}'></div> 
-                    <div class='list__item-info'>
-                        <p class='list__item--name'>${transfer.receiver.name}</p>
-                        <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
-                    </div>
-                    <p class='list__item--amount list__item--amount--positive'><span class='money'>+${transfer.amount}</span> MLA</p>`
-            } else { // Geld gestort
-                transferElement.innerHTML += `
-                    <div class='list__item--icon ${transactionClass}'></div> 
-                    <div class='list__item-info'>
-                        <p class='list__item--name'>${transfer.receiver.name}</p>
-                        <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
-                    </div>
-                    <p class='list__item--amount list__item--amount--negative'><span class='money'>-${transfer.amount}</span> MLA</p>`
-            }
-            transactionList.append(transferElement);
-        }
-    });
-
-    // Make clickable voor comments
-    document.querySelectorAll('.transactions .list__item').forEach(transferElement => {
-        transferElement.addEventListener('click', (e) => {
-            if (transferElement.getAttribute('comment') == 'undefined')
-                showPopUp('Transaction comment', '<i>No comment was added to this transaction.</i>');
-            else
-                showPopUp('Transaction comment', transferElement.getAttribute('comment'));
-        })
-    });
-}).catch(err => {
-    -   console.log("error");
 });
 
 /* HELPER FUNCTIONS */

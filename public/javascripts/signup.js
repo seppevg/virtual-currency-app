@@ -28,7 +28,9 @@ function signUp() {
         if (json.status === 'success') {
             // Sign up success
             let token = json.data.token;
+            let id = json.data.id;
             localStorage.setItem("token", token);
+            localStorage.setItem("id", id);
             window.location.href = './';
         }
         else {

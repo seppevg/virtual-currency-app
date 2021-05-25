@@ -32,7 +32,10 @@ const signup = async (req, res, next) => {
             }, config.get('jwt.secret'));
             res.json({
                 "status": "success",
-                "data": { "token": token },
+                "data": {
+                    "token": token,
+                    "id": result._id,
+                }
             });
         }).catch(error => {
             res.json({
@@ -76,7 +79,10 @@ const login = async (req, res, next) => {
 
         return res.json({
             "status": "success",
-            "data": { "token": token }
+            "data": {
+                "token": token,
+                "id": result.user._id,
+            }
         });
 
     }).catch(error => {
