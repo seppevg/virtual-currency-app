@@ -30,6 +30,11 @@ transactionButton.addEventListener('click', (e) => {
     }).then(json => {
         if (json.status === 'success') {
             //Transaction succes
+            console.log("Sending transfer");
+            primus.write({
+                type: "transfer",
+                data: {},
+            });
             window.location.href = './';
         }
         else {
@@ -75,6 +80,16 @@ transactionName.addEventListener('input', (e) => {
     }).catch(err => {
         console.log(err);
     });
+});
+
+// Primus
+// Connect to server
+let primus = Primus.connect('', {
+    reconnect: {
+        max: Infinity // Number: The max delay before we try to reconnect.
+        , min: 500 // Number: The minimum delay before we try reconnect.
+        , retries: 10 // Number: How many times we should try to reconnect.
+    }
 });
 
 // Pop up handler

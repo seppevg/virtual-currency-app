@@ -85,6 +85,7 @@ let primus =  Primus.connect('', {
 
 primus.on('data', (data) => {
     if(data.type == 'transfer') {
+        console.log('Transfer received');
         update();
     }
 });
