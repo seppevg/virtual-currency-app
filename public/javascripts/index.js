@@ -1,7 +1,7 @@
 // Help icon interaction
 const iconHelp = document.querySelector('.icon--help');
 iconHelp.addEventListener('click', (e) => {
-    showPopUp("Reason colors", 
+    showPopUp("Reason colors",
         `<ul class='color-list'>
             <li><div class='icon icon-orange'></div>Development help</li>
             <li><div class='icon icon-blue'></div>Design help</li>
@@ -37,13 +37,13 @@ fetch('./api/transfers', {
     return result.json();
 }).then(json => {
     json.data.transfers.reverse().forEach((transfer, index) => {
-        if(index < 3 ) {
+        if (index < 3) {
             // Separator
-            if(index > 0) 
+            if (index > 0)
                 transactionList.innerHTML += '<div class="separator"></div>';
 
             // Get icon color based on transfer reason
-            switch(transfer.reason) {
+            switch (transfer.reason) {
                 case "Development help":
                     transactionClass = "icon-orange";
                     break;
@@ -65,22 +65,22 @@ fetch('./api/transfers', {
             transferElement.classList.add('list__item');
             transferElement.setAttribute('comment', transfer.comment);
 
-            if(transfer.amount > 0) { // Geld ontvangen
+            if (transfer.amount < 0) { // Geld ontvangen
                 transferElement.innerHTML += `
-                    <div class='list__item--icon ${ transactionClass }'></div> 
+                    <div class='list__item--icon ${transactionClass}'></div> 
                     <div class='list__item-info'>
-                        <p class='list__item--name'>${ transfer.receiver.name }</p>
-                        <p class='list__item--subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
+                        <p class='list__item--name'>${transfer.receiver.name}</p>
+                        <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
                     </div>
-                    <p class='list__item--amount list__item--amount--positive'><span class='money'>+${ transfer.amount }</span> MLA</p>`
+                    <p class='list__item--amount list__item--amount--positive'><span class='money'>+${transfer.amount}</span> MLA</p>`
             } else { // Geld gestort
-                transferElement.innerHTML  += `
-                    <div class='list__item--icon ${ transactionClass }'></div> 
+                transferElement.innerHTML += `
+                    <div class='list__item--icon ${transactionClass}'></div> 
                     <div class='list__item-info'>
-                        <p class='list__item--name'>${ transfer.receiver.name }</p>
-                        <p class='list__item--subtext'>${ timeSince(new Date(transfer.date)) } ago</p>
+                        <p class='list__item--name'>${transfer.receiver.name}</p>
+                        <p class='list__item--subtext'>${timeSince(new Date(transfer.date))} ago</p>
                     </div>
-                    <p class='list__item--amount list__item--amount--negative'><span class='money'>${ transfer.amount }</span> MLA</p>`
+                    <p class='list__item--amount list__item--amount--negative'><span class='money'>-${transfer.amount}</span> MLA</p>`
             }
             transactionList.append(transferElement);
         }
@@ -89,45 +89,45 @@ fetch('./api/transfers', {
     // Make clickable voor comments
     document.querySelectorAll('.transactions .list__item').forEach(transferElement => {
         transferElement.addEventListener('click', (e) => {
-            if(transferElement.getAttribute('comment') == 'undefined')
+            if (transferElement.getAttribute('comment') == 'undefined')
                 showPopUp('Transaction comment', '<i>No comment was added to this transaction.</i>');
             else
                 showPopUp('Transaction comment', transferElement.getAttribute('comment'));
         })
     });
 }).catch(err => {
--   console.log("error");
+    -   console.log("error");
 });
 
 /* HELPER FUNCTIONS */
 // Time converter function
 function timeSince(date) {
     var seconds = Math.floor((new Date() - date) / 1000);
-  
+
     var interval = seconds / 31536000;
-  
+
     if (interval > 1) {
-      return Math.floor(interval) + " years";
+        return Math.floor(interval) + " years";
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return Math.floor(interval) + " months";
+        return Math.floor(interval) + " months";
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + " days";
+        return Math.floor(interval) + " days";
     }
     interval = seconds / 3600;
     if (interval > 1) {
-      return Math.floor(interval) + " hours";
+        return Math.floor(interval) + " hours";
     }
     interval = seconds / 60;
     if (interval > 1) {
-      return Math.floor(interval) + " minutes";
+        return Math.floor(interval) + " minutes";
     }
     return Math.floor(seconds) + " seconds";
-  }
-  var aDay = 24*60*60*1000;
+}
+var aDay = 24 * 60 * 60 * 1000;
 
 // Pop up handler
 const popUp = document.querySelector('.popup');

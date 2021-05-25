@@ -85,7 +85,6 @@ const createTransfer = (req, res) => {
 
     users.getUserById(senderId, (result) => {
         let sender = result;
-
         if (!sender) {
             return res.json({
                 "status": "error",
@@ -93,10 +92,8 @@ const createTransfer = (req, res) => {
             });
         }
 
-        users.getUserByName(req.body.receiver, (result) => {
-            console.log(result);
-            let receiver = result;
-
+        users.getUserByName(req.body.receiver, (response) => {
+            let receiver = response;
             if (!receiver) {
                 return res.json({
                     "status": "error",
