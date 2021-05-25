@@ -7,15 +7,16 @@ const go = server => {
     primus.on('connection', spark => {
         console.log('A spark has connected! ⚡');
 
-        spark.write({
-            type: "transfer",
-            data: {},
-        });
-
         // Listen to connection
         spark.on('data', data => {
             if(data.type == 'transfer') {
-              
+                console.log('Broadcasting transfer received');
+                primus.write(
+                    {
+                        type: 'transfer',
+                        data: {},
+                    }
+                );
             }
         });
     });
