@@ -79,7 +79,7 @@ const createTransfer = (req, res) => {
     if (!senderId) {
         return res.json({
             "status": "error",
-            "message": "No valid JWT token has been given",
+            "message": "No valid JWT token has been given"
         });
     }
 
@@ -88,7 +88,7 @@ const createTransfer = (req, res) => {
         if (!sender) {
             return res.json({
                 "status": "error",
-                "message": "A user was not found based on this sender ID",
+                "message": "A user was not found based on this sender ID"
             });
         }
 
@@ -107,6 +107,13 @@ const createTransfer = (req, res) => {
             transfer.amount = req.body.amount;
             transfer.reason = req.body.reason;
             transfer.date = Date.now();
+
+            if (req.body.amount > sender.balance) {
+                return res.json({
+                    "status": "error",
+                    "message": "You don't have enough Moola for that transaction"
+                });
+            }
 
             if (req.body.comment)
                 transfer.comment = req.body.comment;
